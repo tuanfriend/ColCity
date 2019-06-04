@@ -5,11 +5,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ColCitySite.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ColCitySite.Controllers
 {
     public class HomeController : Controller
     {
+        private MyContext dbContext;
+
+        // here we can "inject" our context service into the constructor
+        public HomeController(MyContext context)
+        {
+            dbContext = context;
+        }
+        [HttpGet("")]
         public IActionResult Index()
         {
             return View();
